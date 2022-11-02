@@ -1,0 +1,32 @@
+{
+  "name": "hacktoberfest-2022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "run-p dev:server watch:compile",
+    "dev:server": "web-dev-server --node-resolve --open --watch",
+    "watch:compile": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianferry/hacktoberfest-2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianferry/hacktoberfest-2022/issues"
+  },
+  "homepage": "https://github.com/brianferry/hacktoberfest-2022#readme",
+  "devDependencies": {
+    "@web/dev-server": "^0.1.35",
+    "@web/test-runner": "^0.15.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@lit-labs/router": "^0.1.1",
+    "lit": "^2.4.0",
+    "npm-run-all": "^4.1.5",
+    "urlpattern-polyfill": "^6.0.1"
+  }
+}
