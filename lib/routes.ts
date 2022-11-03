@@ -229,7 +229,6 @@ export class Routes implements ReactiveController {
   private _getRoute(pathname: string, search?: string): RouteConfig | undefined {
     const matchedRoute = this.routes.find((r) => {
       const match = getPattern(r).test({pathname: pathname, search: search})
-      console.log(match, r, pathname, search);
       return match;
     });
     if (matchedRoute || this.fallback === undefined) {
