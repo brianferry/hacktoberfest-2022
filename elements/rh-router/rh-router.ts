@@ -1,13 +1,15 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { Router } from '@lit-labs/router';
+import { Router } from '../../lib/router.js'
 import 'urlpattern-polyfill';
 
 @customElement('rh-router')
 export class RhRouter extends LitElement {
     router = new Router(this, [
+      {pattern: new URLPattern({pathname: '/demo', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()},
+      {pattern: new URLPattern({pathname: '/demo/', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()},
       {pattern: new URLPattern({pathname: '/demo'}), render: () => this.normal()},
-      {pattern: new URLPattern({pathname: '/demo', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()}
+      {pattern: new URLPattern({pathname: '/demo/'}), render: () => this.normal()},
     ]);
   
     render() {
