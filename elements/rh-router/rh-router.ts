@@ -7,9 +7,7 @@ import 'urlpattern-polyfill';
 export class RhRouter extends LitElement {
     router = new Router(this, [
       {pattern: new URLPattern({pathname: '/demo', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()},
-      {pattern: new URLPattern({pathname: '/demo/', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()},
-      {pattern: new URLPattern({pathname: '/demo'}), render: () => this.normal()},
-      {pattern: new URLPattern({pathname: '/demo/'}), render: () => this.normal()},
+      {path: '*', render: () => this.normal()},
     ]);
   
     render() {
