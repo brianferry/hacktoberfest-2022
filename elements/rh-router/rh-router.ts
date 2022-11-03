@@ -6,14 +6,9 @@ import 'urlpattern-polyfill';
 @customElement('rh-router')
 export class RhRouter extends LitElement {
     router = new Router(this, [
-      {path: '/demo', render: () => this.normal()},
-      {path: '/demo/hot-n-spicy', render: () => this.hotNSpicy()},
+      {pattern: new URLPattern({pathname: '/demo'}), render: () => this.normal()},
+      {pattern: new URLPattern({pathname: '/demo', search: 'hot-n-spicy'}), render: () => this.hotNSpicy()}
     ]);
-
-    connectedCallback() {
-      super.connectedCallback();
-      console.log(this.router);
-    }
   
     render() {
       return html`
@@ -24,7 +19,7 @@ export class RhRouter extends LitElement {
     normal() {
       return html`
         <h1>Normal mode</h1>
-        <a href="/demo/hot-n-spicy">Try new stuff</a>
+        <a href="/demo?hot-n-spicy">Try new stuff</a>
       `
     }
 
