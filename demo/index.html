@@ -2,8 +2,16 @@
     <head>
         <title>Hacktoberfest 2022</title>
         <script src="/elements/rh-router/rh-router.js" type="module"></script>
+        <script src="/elements/rh-switcher/rh-switcher.js" type="module"></script>
     </head>
     <body>
+        <h1>Router demo</h1>
         <rh-router></rh-router>
+
+        <h2>Switcher demo</h2>
+        <rh-switcher key="demo">
+            <div slot="a">Placeholder for component A</div>
+            <div slot="b">Placeholder for component B</div>
+        </rh-switcher>
     </body>
 </html>

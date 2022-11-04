@@ -18,14 +18,14 @@ export class RhRouter extends LitElement {
 
     normal() {
       return html`
-        <h1>Normal mode</h1>
+        <h2>Normal mode</h2>
         <a href="/demo?hot-n-spicy">Try new stuff</a>
       `
     }
 
     hotNSpicy() {
       return html`
-        <h1>Hot-N-Spicy</h1>
+        <h2>Hot-N-Spicy</h2>
         <a href="/demo">Back to basics</a>
       `
     }
