@@ -4,25 +4,15 @@
         <style>
             html, body {margin: 0; padding: 0;}
 
-            .container {
-                padding: 0 5rem;
-            }
-
             rh-switcher:not:defined [slot] {
                 display: none;
             }
         </style>
-        <script src="/elements/rh-router/rh-router.js" type="module"></script>
         <script src="/elements/rh-switcher/rh-switcher.js" type="module"></script>
         <script src="https://unpkg.com/@patternfly/pfe-band@next?module" type="module"></script>
         <script src="https://unpkg.com/@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js?module" type="module"></script>
     </head>
     <body>
-        <div class="container">
-            <h1>Router demo</h1>
-            <rh-router></rh-router>
-        </div>
-        
 
         <h2>Switcher demo</h2>
         <rh-switcher key="demo" on-message="Showing the new design" off-message="Showing the old design">
