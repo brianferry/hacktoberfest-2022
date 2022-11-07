@@ -1,17 +1,46 @@
 <!DOCTYPE html>
     <head>
         <title>Hacktoberfest 2022</title>
+        <style>
+            html, body {margin: 0; padding: 0;}
+
+            .container {
+                padding: 0 5rem;
+            }
+
+            rh-switcher:not:defined [slot] {
+                display: none;
+            }
+        </style>
         <script src="/elements/rh-router/rh-router.js" type="module"></script>
         <script src="/elements/rh-switcher/rh-switcher.js" type="module"></script>
+        <script src="https://unpkg.com/@patternfly/pfe-band@next?module" type="module"></script>
+        <script src="https://unpkg.com/@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js?module" type="module"></script>
     </head>
     <body>
-        <h1>Router demo</h1>
-        <rh-router></rh-router>
+        <div class="container">
+            <h1>Router demo</h1>
+            <rh-router></rh-router>
+        </div>
+        
 
         <h2>Switcher demo</h2>
-        <rh-switcher key="demo">
-            <div slot="a">Placeholder for component A</div>
-            <div slot="b">Placeholder for component B</div>
+        <rh-switcher key="demo" on-message="Showing the new design" off-message="Showing the old design">
+            <pfe-icon icon="circle-info" size="sm" aria-label="Awards"></pfe-icon> This content is in open beta
+            <div slot="a">
+                <pfe-band color-palette="complement">
+                    <h2 slot="header">Plain and boring</h2>
+                    <p>This is some content</p>
+                    <pfe-cta variant="secondary"><a href="#">Do stuff</a></pfe-cta>
+                </pfe-band>
+            </div>
+            <div slot="b">
+                <pfe-band color-palette="darkest">
+                    <h2 slot="header">Super Spicy 🌶️</h2>
+                    <p>This is some content</p>
+                    <pfe-cta variant="secondary"><a href="#">Do spicy stuff</a></pfe-cta>           
+                </pfe-band>
+            </div>
         </rh-switcher>
     </body>
 </html>
