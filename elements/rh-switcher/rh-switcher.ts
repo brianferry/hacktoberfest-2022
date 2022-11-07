@@ -81,17 +81,17 @@ export class RhSwitcher extends LitElement {
                 </div>
                 <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
             </div>
-            <div ?hidden=${!this._show}><slot name="a"><slot></div>
-            <div ?hidden=${this._show}><slot name="b"><slot></div>
+            <div ?hidden=${this._show}><slot name="a"><slot></div>
+            <div ?hidden=${!this._show}><slot name="b"><slot></div>
         `;
     }
 
     #checkStorage() {
-        console.log(this);
         if (this.key === undefined) {
             return;
         }
         this._show = localStorage.getItem(this.key) === 'true';
+        console.log(this._show);
     }
 
     @bound
