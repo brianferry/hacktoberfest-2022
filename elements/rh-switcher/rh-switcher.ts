@@ -14,11 +14,15 @@ export class RhSwitcher extends LitElement {
     static styles = css`
         [part="banner"] {
             display: grid;
-            grid-template-columns: 1fr fit-content(300px) fit-content(1ch);
+            grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
             background: var(--rh-switcher-background-color, #bde1f4);
             max-width: 100vw;
             padding: var(--rh-space-md, 16px);
+        }
+
+        [part="banner"][hidden] {
+            display: none;
         }
 
         pfe-button {
@@ -35,6 +39,11 @@ export class RhSwitcher extends LitElement {
             margin: 0;
         }
 
+        #container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
         #switch {
             padding: 0 var(--rh-space-md, 16px);
         }
@@ -46,6 +55,8 @@ export class RhSwitcher extends LitElement {
     `
     @query('pfe-switch') private _switch!: PfeSwitch;
 
+    @query('#container') private _container!: HTMLElement;
+
     @queryAssignedElements({slot: 'a'}) private _slotA!: Array<HTMLElement>;
     @queryAssignedElements({slot: 'b'}) private _slotB!: Array<HTMLElement>;
 
@@ -56,7 +67,10 @@ export class RhSwitcher extends LitElement {
     @property({reflect: true, attribute: 'on-message'}) onMessage = "On"
 
     @state()
-    private _show: boolean = false;
+    private _hideSwitch = false;
+
+    @state()
+    private _showA: boolean = false;
 
     async connectedCallback() {
         super.connectedCallback();
@@ -70,19 +84,21 @@ export class RhSwitcher extends LitElement {
 
     render() {
         return html`
-            <div part="banner">
+            <div part="banner" ?hidden="${this._hideSwitch}">
                 <div>
                     <slot></slot>
                 </div>
-                <div id="switch">
-                    <pfe-switch id="checked" ?checked="${this._show}" show-check-icon></pfe-switch>
-                    <label for="checked" data-state="on">${this.onMessage}</label>
-                    <label for="checked" data-state="off">${this.offMessage}</label>
+                <div id="container">
+                    <div id="switch">
+                        <pfe-switch id="checked" ?checked="${this._showA}" show-check-icon></pfe-switch>
+                        <label for="checked" data-state="on">${this.onMessage}</label>
+                        <label for="checked" data-state="off">${this.offMessage}</label>
+                    </div>
+                    <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
                 </div>
-                <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
             </div>
-            <div ?hidden=${this._show}><slot name="a"><slot></div>
-            <div ?hidden=${!this._show}><slot name="b"><slot></div>
+            <div ?hidden=${this._showA}><slot name="a"><slot></div>
+            <div ?hidden=${!this._showA}><slot name="b"><slot></div>
         `;
     }
 
@@ -90,7 +106,9 @@ export class RhSwitcher extends LitElement {
         if (this.key === undefined) {
             return;
         }
-        this._show = localStorage.getItem(this.key) === 'true';
+        const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
+        this._showA = storage.showA === 'true';
+        this._hideSwitch = storage.hide === 'true';
     }
 
     @bound
@@ -98,13 +116,17 @@ export class RhSwitcher extends LitElement {
         if (this.key === undefined) {
             return;
         }
-        localStorage.setItem(this.key,  this._switch.checked.toString());
+        localStorage.setItem(this.key,  JSON.stringify({'showA': this._switch.checked.toString()}) );
         this.requestUpdate();
     }
 
     @bound
     private _onCloseClick(event: Event) {
-        // TODO: save preference for bar to not show if closed.
-        this.remove();
+        if (this.key === undefined) {
+            return;
+        }
+        localStorage.setItem(this.key,  JSON.stringify({'hide': 'true'}) );
+        console.log(localStorage.getItem(this.key));
+        this.requestUpdate();
     }
 }
