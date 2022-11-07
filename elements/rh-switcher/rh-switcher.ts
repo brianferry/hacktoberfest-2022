@@ -91,7 +91,6 @@ export class RhSwitcher extends LitElement {
             return;
         }
         this._show = localStorage.getItem(this.key) === 'true';
-        console.log(this._show);
     }
 
     @bound
@@ -100,7 +99,6 @@ export class RhSwitcher extends LitElement {
             return;
         }
         localStorage.setItem(this.key,  this._switch.checked.toString());
-        console.log('switched to ', localStorage.getItem(this.key));
         this.requestUpdate();
     }
 
