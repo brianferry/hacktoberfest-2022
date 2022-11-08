@@ -9,6 +9,7 @@
             }
         </style>
         <script src="/elements/rh-switcher/rh-switcher.js" type="module"></script>
+        <script src="/elements/rh-swap/rh-swap.js" type="module"></script>
         <script src="https://unpkg.com/@patternfly/pfe-band@next?module" type="module"></script>
         <script src="https://unpkg.com/@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js?module" type="module"></script>
     </head>
@@ -17,6 +18,9 @@
         <h2>Switcher demo</h2>
         <rh-switcher key="demo" on-message="Showing the new design" off-message="Showing the old design">
             <pfe-icon icon="circle-info" size="sm" aria-label="Awards"></pfe-icon> This content is in open beta
+        </rh-switcher>
+
+        <rh-swap key="demo">
             <div slot="a">
                 <pfe-band color-palette="complement">
                     <h2 slot="header">Plain and boring</h2>
@@ -31,6 +35,6 @@
                     <pfe-cta variant="secondary"><a href="#">Do spicy stuff</a></pfe-cta>           
                 </pfe-band>
             </div>
-        </rh-switcher>
+        </rh-swap>
     </body>
 </html>
