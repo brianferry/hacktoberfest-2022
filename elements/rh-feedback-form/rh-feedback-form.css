@@ -1,0 +1,22 @@
+pfe-card {
+  --pfe-card--BackgroundColor: transparent;
+  --pfe-card__header--BackgroundColor: transparent;
+  --pfe-card--PaddingBottom: 0;
+}
+
+h3 {
+  margin-block: 0;
+}
+
+[slot="header"] {
+  color: #b8bbbe;
+  font-size: 1rem;
+}
+
+label[for=expand] {
+  display: block;
+}
+
+fieldset {
+  border: none;
+}

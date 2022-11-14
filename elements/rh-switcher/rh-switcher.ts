@@ -11,18 +11,18 @@ import '@patternfly/pfe-icon';
 import '@patternfly/pfe-button';
 
 export class SwapChangeEvent extends ComposedEvent {
-    constructor(
-      public swap: boolean,
-      public toggle: RhSwitcher,
-    ) {
-      super('swap-change');
-    }
+  constructor(
+    public swap: boolean,
+    public toggle: RhSwitcher,
+  ) {
+    super('swap-change');
   }
+}
 
 @customElement('rh-switcher')
 export class RhSwitcher extends LitElement {
 
-    static styles = css`
+  static styles = css`
         [part="banner"] {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -64,37 +64,37 @@ export class RhSwitcher extends LitElement {
             --pfe-icon--size: 16px;
         }
     `
-    @query('pfe-switch') private _switch!: PfeSwitch;
+  @query('pfe-switch') private _switch!: any;
 
-    @query('#container') private _container!: HTMLElement;
+  @query('#container') private _container!: HTMLElement;
 
-    @queryAssignedElements({slot: 'a'}) private _slotA!: Array<HTMLElement>;
-    @queryAssignedElements({slot: 'b'}) private _slotB!: Array<HTMLElement>;
+  @queryAssignedElements({ slot: 'a' }) private _slotA!: Array<HTMLElement>;
+  @queryAssignedElements({ slot: 'b' }) private _slotB!: Array<HTMLElement>;
 
-    @property({reflect: false}) key?: string;
+  @property({ reflect: false }) key?: string;
 
-    @property({reflect: true, attribute: 'off-message'}) offMessage = "Off"
+  @property({ reflect: true, attribute: 'off-message' }) offMessage = "Off"
 
-    @property({reflect: true, attribute: 'on-message'}) onMessage = "On"
+  @property({ reflect: true, attribute: 'on-message' }) onMessage = "On"
 
-    @state()
-    private _hideSwitch = false;
+  @state()
+  private _hideSwitch = false;
 
-    @state()
-    private _switchChecked = false;
+  @state()
+  private _switchChecked = false;
 
-    async connectedCallback() {
-        super.connectedCallback();
-        await this.updateComplete;
-        this._switch.addEventListener('change', this._onSwitch)
-    }
+  async connectedCallback() {
+    super.connectedCallback();
+    await this.updateComplete;
+    this._switch.addEventListener('change', this._onSwitch)
+  }
 
-    updated() {
-        this.#checkStorage();
-    }
+  updated() {
+    this.#checkStorage();
+  }
 
-    render() {
-        return html`
+  render() {
+    return html`
             <div part="banner" ?hidden="${this._hideSwitch}">
                 <div>
                     <slot></slot>
@@ -109,41 +109,43 @@ export class RhSwitcher extends LitElement {
                 </div>
             </div>
         `;
+  }
+
+  #checkStorage() {
+    if (this.key === undefined) {
+      return;
     }
 
-    #checkStorage() {
-        if (this.key === undefined) {
-            return;
-        }
-        
-        const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
-        this._hideSwitch = storage.hide === 'true';
-        this._switchChecked = storage.switchOn === 'true';
+    if (localStorage.getItem(this.key) !== null) {
+      const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
+      this._hideSwitch = storage.hide === 'true';
+      this._switchChecked = storage.switchOn === 'true';
     }
+  }
 
-    @bound
-    private async _onSwitch() {
-        if (this.key === undefined) {
-            return;
-        }
-        const isSwitchChecked = this._switch.checked;
-        localStorage.setItem(this.key,  JSON.stringify({'switchOn': isSwitchChecked.toString()}));
-        this.dispatchEvent(new SwapChangeEvent(isSwitchChecked, this));
-        this.requestUpdate();
+  @bound
+  private async _onSwitch() {
+    if (this.key === undefined) {
+      return;
     }
+    const isSwitchChecked = this._switch.checked;
+    localStorage.setItem(this.key, JSON.stringify({ 'switchOn': isSwitchChecked.toString() }));
+    this.dispatchEvent(new SwapChangeEvent(isSwitchChecked, this));
+    this.requestUpdate();
+  }
 
-    @bound
-    private _onCloseClick() {
-        if (this.key === undefined) {
-            return;
-        }
-        localStorage.setItem(this.key,  JSON.stringify({'hide': 'true'}) );
-        this.requestUpdate();
+  @bound
+  private _onCloseClick() {
+    if (this.key === undefined) {
+      return;
     }
+    localStorage.setItem(this.key, JSON.stringify({ 'hide': 'true' }));
+    this.requestUpdate();
+  }
 }
 
 declare global {
-    interface HTMLElementTagNameMap {
-      'rh-switcher': RhSwitcher;
-    }
+  interface HTMLElementTagNameMap {
+    'rh-switcher': RhSwitcher;
+  }
 }
