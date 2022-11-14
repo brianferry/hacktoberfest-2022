@@ -6,7 +6,8 @@
   "scripts": {
     "start": "run-p watch:compile dev:server",
     "dev:server": "web-dev-server --node-resolve --open --watch",
-    "watch:compile": "tsc --watch"
+    "watch:compile": "tsc --watch",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
