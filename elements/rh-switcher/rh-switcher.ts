@@ -1,11 +1,11 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, queryAssignedElements, state, query } from 'lit/decorators.js';
+import {classMap} from 'lit/directives/class-map.js';
 
 import { bound } from '@patternfly/pfe-core/decorators.js';
 
 import { ComposedEvent } from '@patternfly/pfe-core';
 
-import type { PfeSwitch } from '@patternfly/pfe-switch/pfe-switch.js';
 import '@patternfly/pfe-switch';
 import '@patternfly/pfe-icon';
 import '@patternfly/pfe-button';
@@ -23,6 +23,13 @@ export class SwapChangeEvent extends ComposedEvent {
 export class RhSwitcher extends LitElement {
 
   static styles = css`
+
+        :host([card]) {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+
         [part="banner"] {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -30,6 +37,14 @@ export class RhSwitcher extends LitElement {
             background: var(--rh-switcher-background-color, #bde1f4);
             max-width: 100vw;
             padding: var(--rh-space-md, 16px);
+        }
+
+        :host([card]) [part="banner"] {
+            position: relative;
+            grid-template-columns: auto;
+            grid-template-rows: 1fr;
+            background: var(--rh-switch-background-color, #FFFFFF);
+            border: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
         [part="banner"][hidden] {
@@ -55,6 +70,16 @@ export class RhSwitcher extends LitElement {
             justify-content: flex-end;
         }
 
+        :host([card]) #container {
+            justify-content: flex-start;
+        }
+
+        :host([card]) pfe-button {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+        }
+
         #switch {
             padding: 0 var(--rh-space-md, 16px);
         }
@@ -73,9 +98,11 @@ export class RhSwitcher extends LitElement {
 
   @property({ reflect: false }) key?: string;
 
-  @property({ reflect: true, attribute: 'off-message' }) offMessage = "Off"
+  @property({ reflect: true, attribute: 'off-message' }) offMessage = "Off";
 
-  @property({ reflect: true, attribute: 'on-message' }) onMessage = "On"
+  @property({ reflect: true, attribute: 'on-message' }) onMessage = "On";
+
+  @property({ reflect: true, type: Boolean }) card? = false;
 
   @state()
   private _hideSwitch = false;
@@ -94,8 +121,9 @@ export class RhSwitcher extends LitElement {
   }
 
   render() {
+    const classes = classMap({ 'card': this.card ? true : false })
     return html`
-            <div part="banner" ?hidden="${this._hideSwitch}">
+            <div part="banner" ?hidden="${this._hideSwitch}" class="${classes}">
                 <div>
                     <slot></slot>
                 </div>
@@ -107,6 +135,7 @@ export class RhSwitcher extends LitElement {
                     </div>
                     <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
                 </div>
+                <slot name="form"></slot>
             </div>
         `;
   }

@@ -8,9 +8,7 @@ import { SwapChangeEvent } from '../rh-switcher/rh-switcher.js';
 // import * as styles from './rh-feedback-form.css';
 
 import '@patternfly/pfe-accordion';
-import '@patternfly/pfe-card';
 import '@patternfly/pfe-icon';
-import '@patternfly/pfe-switch';
 
 @customElement('rh-feedback-form')
 export class RhFeedbackForm extends LitElement {
@@ -48,22 +46,6 @@ fieldset {
 
   render() {
     return html`
-      <pfe-card>
-        <h2 slot="header">X</h2>
-        <div>
-          <h3>This page is in open beta</h3>
-        
-        <p>
-          Explore both versions and contribute to the new redhat.com!
-        </p>
-        
-        <pfe-switch id="switch" checked></pfe-switch>
-        
-        <label for="switch" data-state="on">Design Version 1</label>
-        <label for="switch" data-state="off" hidden>Current Design</label>
-        
-        <hr />
-        
         <pfe-accordion class="accordion" expanded>
           <pfe-accordion-header>
             <h2>Give feedback</h2>
@@ -88,8 +70,7 @@ fieldset {
               </div>
             </fieldset>
           </pfe-accordion-panel>
-        </pfe-accordion>
-      </pfe-card>`
+        </pfe-accordion>`
   }
 
 }
