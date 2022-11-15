@@ -4,20 +4,11 @@ import {classMap} from 'lit/directives/class-map.js';
 
 import { bound } from '@patternfly/pfe-core/decorators.js';
 
-import { ComposedEvent } from '@patternfly/pfe-core';
+import '../rh-inline-switch/rh-inline-switch.js';
 
 import '@patternfly/pfe-switch';
 import '@patternfly/pfe-icon';
 import '@patternfly/pfe-button';
-
-export class SwapChangeEvent extends ComposedEvent {
-  constructor(
-    public swap: boolean,
-    public toggle: RhSwitcher,
-  ) {
-    super('swap-change');
-  }
-}
 
 @customElement('rh-switcher')
 export class RhSwitcher extends LitElement {
@@ -89,12 +80,8 @@ export class RhSwitcher extends LitElement {
             --pfe-icon--size: 16px;
         }
     `
-  @query('pfe-switch') private _switch!: any;
 
   @query('#container') private _container!: HTMLElement;
-
-  @queryAssignedElements({ slot: 'a' }) private _slotA!: Array<HTMLElement>;
-  @queryAssignedElements({ slot: 'b' }) private _slotB!: Array<HTMLElement>;
 
   @property({ reflect: false }) key?: string;
 
@@ -107,17 +94,9 @@ export class RhSwitcher extends LitElement {
   @state()
   private _hideSwitch = false;
 
-  @state()
-  private _switchChecked = false;
-
   async connectedCallback() {
     super.connectedCallback();
     await this.updateComplete;
-    this._switch.addEventListener('change', this._onSwitch)
-  }
-
-  updated() {
-    this.#checkStorage();
   }
 
   render() {
@@ -129,9 +108,7 @@ export class RhSwitcher extends LitElement {
                 </div>
                 <div id="container">
                     <div id="switch">
-                        <pfe-switch id="checked" ?checked="${this._switchChecked}" show-check-icon></pfe-switch>
-                        <label for="checked" data-state="on">${this.onMessage}</label>
-                        <label for="checked" data-state="off">${this.offMessage}</label>
+                       <rh-inline-switch off-message="${this.offMessage}" on-message="${this.onMessage}" key="${this.key}"></rh-inline-switch> 
                     </div>
                     <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
                 </div>
@@ -139,29 +116,7 @@ export class RhSwitcher extends LitElement {
             </div>
         `;
   }
-
-  #checkStorage() {
-    if (this.key === undefined) {
-      return;
-    }
-
-    if (localStorage.getItem(this.key) !== null) {
-      const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
-      this._hideSwitch = storage.hide === 'true';
-      this._switchChecked = storage.switchOn === 'true';
-    }
-  }
-
-  @bound
-  private async _onSwitch() {
-    if (this.key === undefined) {
-      return;
-    }
-    const isSwitchChecked = this._switch.checked;
-    localStorage.setItem(this.key, JSON.stringify({ 'switchOn': isSwitchChecked.toString() }));
-    this.dispatchEvent(new SwapChangeEvent(isSwitchChecked, this));
-    this.requestUpdate();
-  }
+ 
 
   @bound
   private _onCloseClick() {
