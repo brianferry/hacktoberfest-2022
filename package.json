@@ -34,6 +34,7 @@
     "@patternfly/pfe-cta": "^2.0.0-next.5",
     "@patternfly/pfe-icon": "^2.0.0-next.5",
     "@patternfly/pfe-switch": "^2.0.0-next.0",
-    "lit": "^2.4.0"
+    "@rhds/elements": "^1.0.0-beta.26",
+    "lit": "^2.4.1"
   }
 }

@@ -14,3 +14,9 @@ rh-switcher:not:defined [slot] {
     bottom: 0.5rem;
     left: 0.5rem;
 }
+
+.container {
+    margin: 0 auto;
+    max-width: 1138px;
+    padding: 3rem 1rem;
+}
