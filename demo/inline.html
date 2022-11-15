@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-    <head>
-        <title>Hacktoberfest 2022</title>
-        <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
-        <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" media="all">
-        <link rel="stylesheet" href="https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/elements/rh-secondary-nav/rh-secondary-nav-lightdom.css">
-        <base href="/demo/">
-        <link rel="stylesheet" href="lightdom.css">
-        <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"></script>
-        <script type="importmap">
+
+<head>
+  <title>Hacktoberfest 2022</title>
+  <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
+  <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css"
+    media="all">
+  <link rel="stylesheet"
+    href="https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/elements/rh-secondary-nav/rh-secondary-nav-lightdom.css">
+  <base href="/demo/">
+  <link rel="stylesheet" href="lightdom.css">
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"></script>
+  <script type="importmap">
             {
               "imports": {
                 "@patternfly/pfe-accordion": "https://ga.jspm.io/npm:@patternfly/pfe-accordion@2.0.0-next.8/pfe-accordion.js",
@@ -48,59 +51,64 @@
               }
             }
             </script>
-        <script src="demo.js" type="module"></script>
-    </head>
-    <body>
-        <rh-switcher key="demo" on-message="Viewing the new design" off-message="Viewing the original design" card>
-            <h2>New Design Option</h2>
-            <rh-feedback-form slot="form"></rh-feedback-form>
-        </rh-switcher>
-        <rh-secondary-nav main color-palette="darker">
-            <a href="/" slot="logo">Open Beta</a>
-            <ul slot="nav">
-                <li><a href="/demo/">Top Bar</a></li>
-                <li><a href="/demo/card.html">Card</a></li>
-                <li><a href="/demo/inline.html">Inline</a></li>
-            </ul>
-        </rh-secondary-nav>
+  <script src="demo.js" type="module"></script>
+</head>
 
-        <pfe-band color-palette="darkest">
-            <h2 slot="header">
-                <rh-swap key="demo">
-                    <div slot="a">
-                        Card - Switcher demo 
-                    </div>
-                    <div slot="b">
-                        Card - Switcher demo 🌶️ Super Spicy 🌶️
-                    </div>
-                </rh-swap>
-            </h2>
-        </pfe-band>
+<body>
+  <rh-secondary-nav main color-palette="darker">
+    <a href="/" slot="logo">Open Beta</a>
+    <ul slot="nav">
+      <li><a href="/demo/">Top Bar</a></li>
+      <li><a href="/demo/card.html">Card</a></li>
+      <li><a href="/demo/inline.html">Inline</a></li>
+    </ul>
+  </rh-secondary-nav>
 
-        <pfe-band color-palette="lighter">
-            <h2 slot="header">Some content between that doesn't switch</h2>
-            <p>This is some unchanging content</p>
-        </pfe-band>
+  <div class="container">
+    <rh-inline-switch key="demo-one" on-message="Showing the new header design" off-message="Showing the old header design">
+    </rh-inline-switch>
+    <rh-swap key="demo-one">
+      <div slot="a">
+        <h2>Card - Switcher demo </h2>
+      </div>
+      <div slot="b">
+        <h2>Card - Switcher demo 🌶️ Super Spicy 🌶️</h2>
+      </div>
+    </rh-swap>
+  </div>
 
-        <rh-swap key="demo">
-            <div slot="a">
-                <pfe-band color-palette="complement">
-                    <h2 slot="header">Plain and boring</h2>
-                    <p>This is some content</p>
-                    <pfe-cta variant="secondary"><a href="#">Do stuff</a></pfe-cta>
-                </pfe-band>
-            </div>
-            <div slot="b">
-                <pfe-band color-palette="darkest">
-                    <h2 slot="header">Super Spicy 🌶️</h2>
-                    <p>This is some content</p>
-                    <pfe-cta variant="secondary"><a href="#">Do spicy stuff</a></pfe-cta>           
-                </pfe-band>
-            </div>
-        </rh-swap>
+  <pfe-band color-palette="lighter">
+    <h2 slot="header">Some content between that doesn't switch</h2>
+    <p>This is some unchanging content</p>
+  </pfe-band>
 
-        <pfe-button id="local-storage-button">
-            <button>Reset Local Storage</button>
-        </pfe-button>
-    </body>
+  
+
+  <rh-swap key="demo-two">
+    <div slot="a">
+      <pfe-band color-palette="complement">
+        <h2 slot="header">Plain and boring</h2>
+        <p>This is some content</p>
+        <pfe-cta variant="secondary"><a href="#">Do stuff</a></pfe-cta>
+      </pfe-band>
+    </div>
+    <div slot="b">
+      <pfe-band color-palette="darkest">
+        <h2 slot="header">Super Spicy 🌶️</h2>
+        <p>This is some content</p>
+        <pfe-cta variant="secondary"><a href="#">Do spicy stuff</a></pfe-cta>
+      </pfe-band>
+    </div>
+  </rh-swap>
+
+  <pfe-band color-palette="lightest" style="padding-block: 0;">
+    <rh-inline-switch key="demo-two" on-message="Showing the new pfe-band design" off-message="Showing the old pfe-band design">
+    </rh-inline-switch>
+  </pfe-band>
+
+  <pfe-button id="local-storage-button">
+    <button>Reset Local Storage</button>
+  </pfe-button>
+</body>
+
 </html>
