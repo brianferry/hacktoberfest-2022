@@ -5,7 +5,15 @@ html, body {
     font-size: 1rem;
 }
 
-rh-switcher:not:defined [slot] {
+rh-switcher:not([card]):not(:defined) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    background: var(--rh-switcher-background-color, #bde1f4);
+    min-height: 2.5rem;
+}
+
+rh-switcher:not(:defined) [slot] {
     display: none;
 }
 
