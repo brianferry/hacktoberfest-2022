@@ -28,6 +28,7 @@ export class RhSwitcher extends LitElement {
             position: absolute;
             bottom: 0;
             right: 0;
+            min-width: 400px;
         }
 
         [part="banner"] {
@@ -36,7 +37,6 @@ export class RhSwitcher extends LitElement {
             grid-template-rows: auto;
             background: var(--rh-switcher-background-color, #bde1f4);
             max-width: 100vw;
-            padding: var(--rh-space-md, 16px);
         }
 
         :host([card]) [part="banner"] {
@@ -49,6 +49,11 @@ export class RhSwitcher extends LitElement {
 
         [part="banner"][hidden] {
             display: none;
+        }
+
+        :host([card]) [part="header"] {
+          color: var(--rh-switch-header-color, #FFFFFF);
+          background:  var(--rh-switch-header-background-color, #6753ac);
         }
 
         pfe-button {
@@ -68,6 +73,7 @@ export class RhSwitcher extends LitElement {
         #container {
             display: flex;
             justify-content: flex-end;
+            padding: var(--rh-space-md, 16px);
         }
 
         :host([card]) #container {
@@ -76,12 +82,27 @@ export class RhSwitcher extends LitElement {
 
         :host([card]) pfe-button {
             position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
+            top: 28px;
+            right: 16px;
+            --pf-c-button--m-plain--Color: #FFFFFF;
+        }
+
+        :host([card]) pfe-button button:hover {
+            --pf-c-button--m-plain--Color: #d2d2d2;
         }
 
         #switch {
             padding: 0 var(--rh-space-md, 16px);
+        }
+
+        [data-state] {
+            font-weight: bold;
+        }
+
+        ::slotted(:is(h1, h2, h3, h4 , h5)) {
+          padding: 0 16px;
+          text-transform: uppercase;
+          font-weight: 300;
         }
 
         ::slotted(pfe-icon) {
@@ -124,7 +145,7 @@ export class RhSwitcher extends LitElement {
     const classes = classMap({ 'card': this.card ? true : false })
     return html`
             <div part="banner" ?hidden="${this._hideSwitch}" class="${classes}">
-                <div>
+                <div part="header">
                     <slot></slot>
                 </div>
                 <div id="container">
