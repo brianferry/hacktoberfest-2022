@@ -52,9 +52,10 @@
     </head>
     <body>
 
-        <rh-switcher key="demo" on-message="Showing the new design" off-message="Showing the old design">
+        <rh-switcher key="demo" on-message="Viewing the new design" off-message="Viewing the original design">
             <pfe-icon icon="circle-info" size="sm" aria-label="Awards"></pfe-icon> This content is in open beta
         </rh-switcher>
+        
         <rh-secondary-nav main color-palette="darker">
             <a href="/" slot="logo">Open Beta</a>
             <ul slot="nav">
@@ -64,16 +65,18 @@
             </ul>
         </rh-secondary-nav>
 
-        <div class="container">
-            <rh-swap key="demo">
-                <div slot="a">
-                    <h2>Top Bar - Switcher demo </h2>
-                </div>
-                <div slot="b">
-                    <h2>Top Bar - Switcher demo 🌶️ Super Spicy 🌶️</h2>
-                </div>
-            </rh-swap>
-        </div>
+        <pfe-band color-palette="darkest">
+            <h2 slot="header">
+                <rh-swap key="demo">
+                    <div slot="a">
+                        Top Bar - Switcher demo 
+                    </div>
+                    <div slot="b">
+                        Top Bar - Switcher demo 🌶️ Super Spicy 🌶️
+                    </div>
+                </rh-swap>
+            </h2>
+        </pfe-band>
 
         <pfe-band color-palette="lighter">
             <h2 slot="header">Some content between that doesn't switch</h2>
