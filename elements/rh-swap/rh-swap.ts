@@ -39,8 +39,6 @@ export class RhSwap extends LitElement {
       return;
     }
 
-    console.log('checkStorage');
-
     if (localStorage.getItem(this.key) !== null) {
       const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
       this._showA = storage.switchOn === 'true';
