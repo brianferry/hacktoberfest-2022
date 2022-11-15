@@ -8,41 +8,40 @@
                 display: none;
             }
         </style>
+        <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"></script>
+
         <script type="importmap">
             {
               "imports": {
-                "lit": "../node_modules/lit/index.js",
-                "lit/": "../node_modules/lit/",
-                "@lit/reactive-element": "../node_modules/@lit/reactive-element/reactive-element.js",
-                "@lit/reactive-element/": "../node_modules/@lit/reactive-element/",
-                "lit-element": "../node_modules/lit-element/index.js",
-                "lit-element/": "../node_modules/lit-element/",
-                "lit-html": "../node_modules/lit-html/lit-html.js",
-                "lit-html/": "../node_modules/lit-html/",
-                "@patternfly/pfe-core": "../node_modules/@patternfly/pfe-core/index.js",
-                "@patternfly/pfe-core/": "../node_modules/@patternfly/pfe-core/",
-                "@patternfly/pfe-accordion/": "../node_modules/@patternfly/pfe-accordion/",
-                "@patternfly/pfe-accordion": "../node_modules/@patternfly/pfe-switch/pfe-accordion.js",
-                "@patternfly/pfe-switch/": "../node_modules/@patternfly/pfe-switch/",
-                "@patternfly/pfe-switch": "../node_modules/@patternfly/pfe-switch/pfe-switch.js",
-                "@patternfly/pfe-button/": "../node_modules/@patternfly/pfe-button/",
-                "@patternfly/pfe-button": "../node_modules/@patternfly/pfe-button/pfe-button.js",
-                "@patternfly/pfe-card/": "../node_modules/@patternfly/pfe-card/",
-                "@patternfly/pfe-card": "../node_modules/@patternfly/pfe-card/pfe-card.js",
-                "@patternfly/pfe-collapse/": "../node_modules/@patternfly/pfe-collapse/",
-                "@patternfly/pfe-collapse": "../node_modules/@patternfly/pfe-collapse/pfe-collapse.js",
-                "@patternfly/pfe-spinner/": "../node_modules/@patternfly/pfe-spinner/",
-                "@patternfly/pfe-spinner": "../node_modules/@patternfly/pfe-spinner/spinner.js",
-                "@patternfly/pfe-icon/": "../node_modules/@patternfly/pfe-icon/",
-                "@patternfly/pfe-icon": "../node_modules/@patternfly/pfe-icon/icon.js"
+                "@patternfly/pfe-accordion": "https://ga.jspm.io/npm:@patternfly/pfe-accordion@2.0.0-next.8/pfe-accordion.js",
+                "@patternfly/pfe-button": "https://ga.jspm.io/npm:@patternfly/pfe-button@2.0.0-next.7/pfe-button.js",
+                "@patternfly/pfe-card": "https://ga.jspm.io/npm:@patternfly/pfe-card@2.0.0-next.6/pfe-card.js",
+                "@patternfly/pfe-core": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/core.js",
+                "@patternfly/pfe-core/decorators.js": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/decorators.js",
+                "@patternfly/pfe-icon": "https://ga.jspm.io/npm:@patternfly/pfe-icon@2.0.0-next.5/pfe-icon.js",
+                "@patternfly/pfe-switch": "https://ga.jspm.io/npm:@patternfly/pfe-switch@2.0.0-next.0/pfe-switch.js",
+                "lit": "https://ga.jspm.io/npm:lit@2.4.1/index.js",
+                "lit/decorators.js": "https://ga.jspm.io/npm:lit@2.4.1/decorators.js",
+                "lit/directives/class-map.js": "https://ga.jspm.io/npm:lit@2.4.1/directives/class-map.js"
+              },
+              "scopes": {
+                "https://ga.jspm.io/": {
+                  "@lit/reactive-element": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/reactive-element.js",
+                  "@lit/reactive-element/decorators/": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/decorators/",
+                  "@patternfly/pfe-core/": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/",
+                  "@patternfly/pfe-spinner": "https://ga.jspm.io/npm:@patternfly/pfe-spinner@2.0.0-next.6/pfe-spinner.js",
+                  "lit": "https://ga.jspm.io/npm:lit@2.3.0/index.js",
+                  "lit-element/lit-element.js": "https://ga.jspm.io/npm:lit-element@3.2.2/development/lit-element.js",
+                  "lit-html": "https://ga.jspm.io/npm:lit-html@2.4.0/node/lit-html.js",
+                  "lit-html/": "https://ga.jspm.io/npm:lit-html@2.4.0/node/",
+                  "lit/": "https://ga.jspm.io/npm:lit@2.3.0/"
+                }
               }
             }
         </script>
         <script src="../elements/rh-switcher/rh-switcher.js" type="module"></script>
         <script src="../elements/rh-swap/rh-swap.js" type="module"></script>
         <script src="../elements/rh-feedback-form/rh-feedback-form.js" type="module"></script>
-        <script src="https://unpkg.com/@patternfly/pfe-band@next?module" type="module"></script>
-        <script src="https://unpkg.com/@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js?module" type="module"></script>
     </head>
     <body>
 
