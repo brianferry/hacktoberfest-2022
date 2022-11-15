@@ -65,16 +65,18 @@
             </ul>
         </rh-secondary-nav>
 
-        <div class="container">
-            <rh-swap key="demo">
-                <div slot="a">
-                    <h2>Card - Switcher demo </h2>
-                </div>
-                <div slot="b">
-                    <h2>Card  - Switcher demo 🌶️ Super Spicy 🌶️</h2>
-                </div>
-            </rh-swap>
-        </div>
+        <pfe-band color-palette="darkest">
+            <h2 slot="header">
+                <rh-swap key="demo">
+                    <div slot="a">
+                        Card - Switcher demo 
+                    </div>
+                    <div slot="b">
+                        Card - Switcher demo 🌶️ Super Spicy 🌶️
+                    </div>
+                </rh-swap>
+            </h2>
+        </pfe-band>
 
         <pfe-band color-palette="lighter">
             <h2 slot="header">Some content between that doesn't switch</h2>

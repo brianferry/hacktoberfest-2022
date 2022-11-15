@@ -7,10 +7,8 @@ html, body {
 
 rh-switcher:not([card]):not(:defined) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
     background: var(--rh-switcher-background-color, #bde1f4);
-    min-height: 2.5rem;
+    min-height: 3.4rem;
 }
 
 rh-swap:not(:defined) [slot="b"]  {
