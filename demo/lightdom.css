@@ -13,7 +13,7 @@ rh-switcher:not([card]):not(:defined) {
     min-height: 2.5rem;
 }
 
-rh-switcher:not(:defined) [slot] {
+rh-swap:not(:defined) [slot="b"]  {
     display: none;
 }
 
