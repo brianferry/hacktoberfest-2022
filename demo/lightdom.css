@@ -18,7 +18,7 @@ rh-swap:not(:defined) [slot="b"]  {
 #local-storage-button {
     position: absolute;
     bottom: 0.5rem;
-    left: 0.5rem;
+    left: 3rem;
 }
 
 .container {

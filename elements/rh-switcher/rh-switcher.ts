@@ -27,24 +27,23 @@ export class RhSwitcher extends LitElement {
         :host([card]) {
             position: absolute;
             bottom: 0;
-            right: 0;
+            right: 3rem;
             min-width: 400px;
         }
 
-        [part="banner"] {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto;
-            background: var(--rh-switcher-background-color, #bde1f4);
-            max-width: 100vw;
+        :host(:not([card])) [part="banner"] {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+          max-width: 100vw;
+          background: var(--rh-switcher-background-color, #bde1f4);
         }
 
         :host([card]) [part="banner"] {
             position: relative;
             grid-template-columns: auto;
             grid-template-rows: 1fr;
-            background: var(--rh-switch-background-color, #FFFFFF);
-            border: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
+            background: tranparent; 
         }
 
         [part="banner"][hidden] {
@@ -52,8 +51,10 @@ export class RhSwitcher extends LitElement {
         }
 
         :host([card]) [part="header"] {
-          color: var(--rh-switch-header-color, #FFFFFF);
-          background:  var(--rh-switch-header-background-color, #6753ac);
+            color: var(--rh-switch-header-color, #FFFFFF);
+            background:  var(--rh-switch-header-background-color, #6753ac);
+            padding: var(--rh-space-xs, 4px) var(--rh-space-xs, 4px);
+            border-radius: 3px 3px 0px 0px;
         }
 
         pfe-button {
@@ -73,16 +74,18 @@ export class RhSwitcher extends LitElement {
         #container {
             display: flex;
             justify-content: flex-end;
-            padding: var(--rh-space-md, 16px);
+            padding: 0 var(--rh-space-md, 16px) var(--rh-space-md, 16px);
+            border: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
         :host([card]) #container {
-            justify-content: flex-start;
+            display: block;
+            background: var(--rh-switch-background-color, #FFFFFF);
         }
 
         :host([card]) pfe-button {
             position: absolute;
-            top: 28px;
+            top: 16px;
             right: 16px;
             --pf-c-button--m-plain--Color: #FFFFFF;
         }
@@ -92,17 +95,20 @@ export class RhSwitcher extends LitElement {
         }
 
         #switch {
-            padding: 0 var(--rh-space-md, 16px);
+            padding: var(--rh-space-md, 16px) var(--rh-space-md, 16px);
+            border-block-end: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
         [data-state] {
-            font-weight: bold;
+            font-family: var(--pfe-theme--font-family--heading, "RedHatDisplay", "Overpass", Overpass, Helvetica, Arial, sans-serif);
         }
 
         ::slotted(:is(h1, h2, h3, h4 , h5)) {
-          padding: 0 16px;
-          text-transform: uppercase;
-          font-weight: 300;
+            font-family: var(--pfe-theme--font-family, "RedHatText", "Overpass", Overpass, Helvetica, Arial, sans-serif);
+            font-size: 1rem;
+            padding: 0 16px;
+            text-transform: uppercase;
+            font-weight: 300;
         }
 
         ::slotted(pfe-icon) {
@@ -155,8 +161,8 @@ export class RhSwitcher extends LitElement {
                         <label for="checked" data-state="off">${this.offMessage}</label>
                     </div>
                     <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
+                    <slot name="form"></slot>
                 </div>
-                <slot name="form"></slot>
             </div>
         `;
   }
