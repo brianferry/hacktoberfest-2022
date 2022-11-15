@@ -101,8 +101,7 @@ fieldset {
     }
 
     if (localStorage.getItem(this.key) !== null) {
-      const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
-      this._hideSwitch = storage.hide === 'true';
+      const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");    
       this._switchChecked = storage.switchOn === 'true';
     }
   }
