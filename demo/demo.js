@@ -19,4 +19,5 @@ local.addEventListener('click', function() {
         console.log(`removing ${k} from localStorage`);
         localStorage.removeItem(k);
     })
+    location.reload();
 })

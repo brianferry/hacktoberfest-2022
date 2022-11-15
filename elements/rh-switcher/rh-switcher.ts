@@ -21,6 +21,10 @@ export class RhSwitcher extends LitElement {
             right: 3rem;
             min-width: 400px;
         }
+        :host(:not([card])) [part="banner"][hidden],
+        [part="banner"][hidden] {
+          display: none;
+        }
 
         :host(:not([card])) [part="banner"] {
           display: grid;
@@ -35,10 +39,6 @@ export class RhSwitcher extends LitElement {
             grid-template-columns: auto;
             grid-template-rows: 1fr;
             background: tranparent; 
-        }
-
-        [part="banner"][hidden] {
-            display: none;
         }
 
         :host([card]) [part="header"] {
@@ -137,6 +137,10 @@ export class RhSwitcher extends LitElement {
     await this.updateComplete;
   }
 
+  updated() {
+    this.#checkStorage();
+  }
+
   render() {
     const classes = classMap({ 'card': this.card ? true : false })
     return html`
@@ -148,7 +152,11 @@ export class RhSwitcher extends LitElement {
                     <div id="switch">
                        <rh-inline-switch off-message="${this.offMessage}" on-message="${this.onMessage}" key="${this.key}"></rh-inline-switch> 
                     </div>
-                    <pfe-button plain @click="${this._onCloseClick}"><button><pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon></button></pfe-button>
+                    <pfe-button plain @click="${this._onCloseClick}">
+                      <button>
+                        <pfe-icon icon="xmark" size="md" aria-label="Close"></pfe-icon>
+                      </button>
+                    </pfe-button>
                     <slot name="form"></slot>
                 </div>
             </div>
@@ -161,8 +169,21 @@ export class RhSwitcher extends LitElement {
     if (this.key === undefined) {
       return;
     }
-    localStorage.setItem(this.key, JSON.stringify({ 'hide': 'true' }));
+    const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
+    storage.hide = 'true';
+    localStorage.setItem(this.key, JSON.stringify(storage));
+    this._hideSwitch = true;
     this.requestUpdate();
+  }
+
+  #checkStorage() {
+    if (this.key === undefined) {
+      return;
+    }
+    if (localStorage.getItem(this.key) !== null) {
+      const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
+      this._hideSwitch = storage.hide === 'true';
+    }
   }
 }
 
