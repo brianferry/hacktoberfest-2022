@@ -59,9 +59,6 @@ fieldset {
   @property({ reflect: true, attribute: 'on-message' }) onMessage = "On";
 
   @state()
-  private _hideSwitch = false;
-
-  @state()
   private _switchChecked = false;
 
   @query('pfe-switch') private _switch!: any;
@@ -90,6 +87,9 @@ fieldset {
       return;
     }
     const isSwitchChecked = this._switch.checked;
+    // TODO: I think this might cause issues later should first read the key
+    // JSON.parse it then set the new key to the object, then Stringify and write
+    // whole object back to localstorage.
     localStorage.setItem(this.key, JSON.stringify({ 'switchOn': isSwitchChecked.toString() }));
     this.dispatchEvent(new SwapChangeEvent(isSwitchChecked, this));
     this.requestUpdate();

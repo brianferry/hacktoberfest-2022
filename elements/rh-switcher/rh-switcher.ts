@@ -150,7 +150,7 @@ export class RhSwitcher extends LitElement {
                 </div>
                 <div id="container">
                     <div id="switch">
-                       <rh-inline-switch off-message="${this.offMessage}" on-message="${this.onMessage}" key="${this.key}"></rh-inline-switch> 
+                       <rh-inline-switch ?modal="${!this.card}" off-message="${this.offMessage}" on-message="${this.onMessage}" key="${this.key}"></rh-inline-switch> 
                     </div>
                     <pfe-button plain @click="${this._onCloseClick}">
                       <button>
