@@ -59,14 +59,14 @@
     <a href="/" slot="logo">Open Beta</a>
     <ul slot="nav">
       <li><a href="/demo/">Card</a></li>
-      <li><a href="/demo/topbar.html">Top Bar</a></li>
+      <li><a href="/demo/bar.html">Bar</a></li>
       <li><a href="/demo/inline.html">Inline</a></li>
     </ul>
   </rh-secondary-nav>
 
   <div class="container">
-    <rh-inline-switch key="demo-one" on-message="Showing the new header design" off-message="Showing the old header design">
-    </rh-inline-switch>
+
+    <rh-switcher variant="inline" key="demo-one" on-message="howing the new header design" off-message="Showing the old header design"></rh-switcher>
     <rh-swap key="demo-one">
       <div slot="a">
         <h2>Card - Switcher demo </h2>
@@ -100,8 +100,7 @@
   </rh-swap>
 
   <pfe-band color-palette="lightest" style="padding-block: 0;">
-    <rh-inline-switch key="demo-two" on-message="Showing the new pfe-band design" off-message="Showing the old pfe-band design">
-    </rh-inline-switch>
+    <rh-switcher variant="inline" key="demo-two" on-message="Showing the new pfe-band design" off-message="Showing the old pfe-band design"></rh-switcher>
   </pfe-band>
 
   <pfe-button id="local-storage-button">

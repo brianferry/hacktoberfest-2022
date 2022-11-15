@@ -1,32 +1,45 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property, queryAssignedElements, state, query } from 'lit/decorators.js';
-import {classMap} from 'lit/directives/class-map.js';
+import { customElement, property, state, query } from 'lit/decorators.js';
 
+import { ComposedEvent } from '@patternfly/pfe-core';
 import { bound } from '@patternfly/pfe-core/decorators.js';
-
-import '../rh-inline-switch/rh-inline-switch.js';
 
 import '@patternfly/pfe-switch';
 import '@patternfly/pfe-icon';
 import '@patternfly/pfe-button';
+
+export type Variant = (
+  | 'card'
+  | 'bar'
+  | 'inline'
+);
+
+export class SwapChangeEvent extends ComposedEvent {
+  constructor(
+    public swap: boolean,
+    public toggle: RhSwitcher,
+  ) {
+    super('swap-change');
+  }
+}
 
 @customElement('rh-switcher')
 export class RhSwitcher extends LitElement {
 
   static styles = css`
 
-        :host([card]) {
+        :host([variant="card"]) {
             position: absolute;
             bottom: 0;
             right: 3rem;
             min-width: 400px;
         }
-        :host(:not([card])) [part="banner"][hidden],
+        :host(:not([variant="card"])) [part="banner"][hidden],
         [part="banner"][hidden] {
           display: none;
         }
 
-        :host(:not([card])) [part="banner"] {
+        :host([variant="bar"]) [part="banner"] {
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-template-rows: auto;
@@ -34,21 +47,21 @@ export class RhSwitcher extends LitElement {
           background: var(--rh-switcher-background-color, #bde1f4);
         }
 
-        :host([card]) [part="banner"] {
+        :host([variant="card"]) [part="banner"] {
             position: relative;
             grid-template-columns: auto;
             grid-template-rows: 1fr;
-            background: tranparent; 
+            background: transparent; 
         }
 
-        :host([card]) [part="header"] {
+        :host([variant="card"]) [part="header"] {
             color: var(--rh-switch-header-color, #FFFFFF);
             background:  var(--rh-switch-header-background-color, #6753ac);
             padding: var(--rh-space-xs, 4px) var(--rh-space-xs, 4px);
             border-radius: 3px 3px 0px 0px;
         }
 
-        :host(:not([card])) [part="header"] {
+        :host(:not([variant="card"])) [part="header"] {
             display: flex;
             align-items: center;
             padding-inline-start: var(--rh-space-md, 16px);
@@ -69,27 +82,27 @@ export class RhSwitcher extends LitElement {
             margin: 0;
         }
 
-        #container {
+        :host(:not([variant="inline"])) #container {
             display: flex;
             justify-content: flex-end;
             align-items: center;
             border: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
-        :host([card]) #container {
+        :host([variant="card"]) #container {
             display: block;
             background: var(--rh-switch-background-color, #FFFFFF);
             padding: 0 var(--rh-space-md, 16px) var(--rh-space-md, 16px);
         }
 
-        :host([card]) pfe-button {
+        :host([variant="card"]) pfe-button {
             position: absolute;
             top: 16px;
             right: 16px;
             --pf-c-button--m-plain--Color: #FFFFFF;
         }
 
-        :host([card]) pfe-button button:hover {
+        :host([variant="card"]) pfe-button button:hover {
             --pf-c-button--m-plain--Color: #d2d2d2;
         }
 
@@ -97,12 +110,18 @@ export class RhSwitcher extends LitElement {
             padding: var(--rh-space-md, 16px) var(--rh-space-md, 16px);
          }
 
-        :host([card]) #switch {
+        :host([variant="card"]) #switch {
             border-block-end: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
         [data-state] {
             font-family: var(--pfe-theme--font-family--heading, "RedHatDisplay", "Overpass", Overpass, Helvetica, Arial, sans-serif);
+        }
+
+        :host([variant="inline"]) [part="header"],
+        :host([variant="inline"]) pfe-button,
+        :host([variant="inline"]) slot[name="form"] {
+          display: none !important;
         }
 
         ::slotted(:is(h1, h2, h3, h4 , h5)) {
@@ -121,20 +140,26 @@ export class RhSwitcher extends LitElement {
 
   @query('#container') private _container!: HTMLElement;
 
+  @query('pfe-switch') private _switch!: any;
+
   @property({ reflect: false }) key?: string;
 
   @property({ reflect: true, attribute: 'off-message' }) offMessage = "Off";
 
   @property({ reflect: true, attribute: 'on-message' }) onMessage = "On";
 
-  @property({ reflect: true, type: Boolean }) card? = false;
+  @property({ reflect: true }) variant: Variant = 'card'
 
   @state()
   private _hideSwitch = false;
 
+  @state()
+  private _switchChecked = false;
+
   async connectedCallback() {
     super.connectedCallback();
     await this.updateComplete;
+    this._switch.addEventListener('change', this._onSwitch)
   }
 
   updated() {
@@ -142,15 +167,16 @@ export class RhSwitcher extends LitElement {
   }
 
   render() {
-    const classes = classMap({ 'card': this.card ? true : false })
     return html`
-            <div part="banner" ?hidden="${this._hideSwitch}" class="${classes}">
+            <div part="banner" ?hidden="${this._hideSwitch}">
                 <div part="header">
                     <slot></slot>
                 </div>
                 <div id="container">
                     <div id="switch">
-                       <rh-inline-switch ?modal="${!this.card}" off-message="${this.offMessage}" on-message="${this.onMessage}" key="${this.key}"></rh-inline-switch> 
+                      <pfe-switch id="checked" ?checked="${this._switchChecked}" show-check-icon></pfe-switch>
+                      <label for="checked" data-state="on">${this.onMessage}</label>
+                      <label for="checked" data-state="off">${this.offMessage}</label>
                     </div>
                     <pfe-button plain @click="${this._onCloseClick}">
                       <button>
@@ -163,6 +189,19 @@ export class RhSwitcher extends LitElement {
         `;
   }
  
+  @bound
+  private async _onSwitch() {
+    if (this.key === undefined) {
+      return;
+    }
+    const isSwitchChecked = this._switch.checked;
+    // TODO: I think this might cause issues later should first read the key
+    // JSON.parse it then set the new key to the object, then Stringify and write
+    // whole object back to localstorage.
+    localStorage.setItem(this.key, JSON.stringify({ 'switchOn': isSwitchChecked.toString() }));
+    this.dispatchEvent(new SwapChangeEvent(isSwitchChecked, this));
+    this.requestUpdate();
+  }
 
   @bound
   private _onCloseClick() {
@@ -182,6 +221,7 @@ export class RhSwitcher extends LitElement {
     }
     if (localStorage.getItem(this.key) !== null) {
       const storage = JSON.parse(localStorage.getItem(this.key) ?? "{}");
+      this._switchChecked = storage.switchOn === 'true';
       this._hideSwitch = storage.hide === 'true';
     }
   }
