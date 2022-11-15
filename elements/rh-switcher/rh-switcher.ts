@@ -57,12 +57,19 @@ export class RhSwitcher extends LitElement {
             border-radius: 3px 3px 0px 0px;
         }
 
+        :host(:not([card])) [part="header"] {
+            display: flex;
+            align-items: center;
+            padding-inline-start: var(--rh-space-md, 16px);
+        }
+
         pfe-button {
             --pf-c-button--PaddingBottom: 0;
             --pf-c-button--PaddingRight: 0;
             --pf-c-button--PaddingLeft: 0;
             --pf-c-button--PaddingTop: 0;
             display: inline-flex;
+            padding-inline-end: var(--rh-space-md, 16px);
         }
 
         button {
@@ -74,13 +81,14 @@ export class RhSwitcher extends LitElement {
         #container {
             display: flex;
             justify-content: flex-end;
-            padding: 0 var(--rh-space-md, 16px) var(--rh-space-md, 16px);
+            align-items: center;
             border: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
         :host([card]) #container {
             display: block;
             background: var(--rh-switch-background-color, #FFFFFF);
+            padding: 0 var(--rh-space-md, 16px) var(--rh-space-md, 16px);
         }
 
         :host([card]) pfe-button {
@@ -96,6 +104,9 @@ export class RhSwitcher extends LitElement {
 
         #switch {
             padding: var(--rh-space-md, 16px) var(--rh-space-md, 16px);
+         }
+
+        :host([card]) #switch {
             border-block-end: 1px solid var(--rh-switcher-border, var(--rh-color-border-subtle-on-light, #d2d2d2));
         }
 
