@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-    <head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
         <title>Hacktoberfest 2022</title>
         <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
         <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" media="all">
@@ -19,8 +22,10 @@
                 "@patternfly/pfe-cta": "https://ga.jspm.io/npm:@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js",
                 "@patternfly/pfe-icon": "https://ga.jspm.io/npm:@patternfly/pfe-icon@2.0.0-next.5/pfe-icon.js",
                 "@patternfly/pfe-switch": "https://ga.jspm.io/npm:@patternfly/pfe-switch@2.0.0-next.0/pfe-switch.js",
+                "@patternfly/pfe-modal": "https://ga.jspm.io/npm:@patternfly/pfe-modal@2.0.0-next.6/pfe-modal.js",
                 "@rhds/elements": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/rhds.min.js",
                 "@rhds/elements/rh-secondary-nav/rh-secondary-nav.js": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/elements/rh-secondary-nav/rh-secondary-nav.js",
+                "element-internals-polyfill": "https://ga.jspm.io/npm:element-internals-polyfill@1.1.16/dist/index.js",
                 "lit": "https://ga.jspm.io/npm:lit@2.4.1/index.js",
                 "lit/decorators.js": "https://ga.jspm.io/npm:lit@2.4.1/decorators.js",
                 "lit/directives/class-map.js": "https://ga.jspm.io/npm:lit@2.4.1/directives/class-map.js"
@@ -47,20 +52,21 @@
                 }
               }
             }
-            </script>
+        </script>
         <script src="demo.js" type="module"></script>
     </head>
     <body>
 
-        <rh-switcher key="demo" on-message="Viewing the new design" off-message="Viewing the original design">
+        <rh-switcher variant="bar" key="demo" on-message="Viewing the new design" off-message="Viewing the original design">
             <pfe-icon icon="circle-info" size="sm" aria-label="Awards"></pfe-icon> This content is in open beta
+            <rh-feedback-form slot="form"></rh-feedback-form>
         </rh-switcher>
         
         <rh-secondary-nav main color-palette="darker">
             <a href="/" slot="logo">Open Beta</a>
             <ul slot="nav">
                 <li><a href="/demo/">Card</a></li>
-                <li><a href="/demo/topbar">Top Bar</a></li>
+                <li><a href="/demo/bar.html">Bar</a></li>
                 <li><a href="/demo/inline.html">Inline</a></li>
             </ul>
         </rh-secondary-nav>
@@ -69,10 +75,10 @@
             <h2 slot="header">
                 <rh-swap key="demo">
                     <div slot="a">
-                        Top Bar - Switcher demo 
+                        Bar Variant
                     </div>
                     <div slot="b">
-                        Top Bar - Switcher demo 🌶️ Super Spicy 🌶️
+                       Bar Variant 🌶️ Super Spicy 🌶️
                     </div>
                 </rh-swap>
             </h2>

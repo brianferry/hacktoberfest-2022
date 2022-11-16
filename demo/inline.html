@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <title>Hacktoberfest 2022</title>
   <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-theme/4/advanced-theme.css">
   <link rel="stylesheet" href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css"
@@ -11,46 +13,48 @@
   <link rel="stylesheet" href="lightdom.css">
   <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"></script>
   <script type="importmap">
-            {
-              "imports": {
-                "@patternfly/pfe-accordion": "https://ga.jspm.io/npm:@patternfly/pfe-accordion@2.0.0-next.8/pfe-accordion.js",
-                "@patternfly/pfe-band": "https://ga.jspm.io/npm:@patternfly/pfe-band@2.0.0-next.4/pfe-band.js",
-                "@patternfly/pfe-button": "https://ga.jspm.io/npm:@patternfly/pfe-button@2.0.0-next.7/pfe-button.js",
-                "@patternfly/pfe-card": "https://ga.jspm.io/npm:@patternfly/pfe-card@2.0.0-next.6/pfe-card.js",
-                "@patternfly/pfe-core": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/core.js",
-                "@patternfly/pfe-core/decorators.js": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/decorators.js",
-                "@patternfly/pfe-cta": "https://ga.jspm.io/npm:@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js",
-                "@patternfly/pfe-icon": "https://ga.jspm.io/npm:@patternfly/pfe-icon@2.0.0-next.5/pfe-icon.js",
-                "@patternfly/pfe-switch": "https://ga.jspm.io/npm:@patternfly/pfe-switch@2.0.0-next.0/pfe-switch.js",
-                "@rhds/elements": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/rhds.min.js",
-                "@rhds/elements/rh-secondary-nav/rh-secondary-nav.js": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/elements/rh-secondary-nav/rh-secondary-nav.js",
-                "lit": "https://ga.jspm.io/npm:lit@2.4.1/index.js",
-                "lit/decorators.js": "https://ga.jspm.io/npm:lit@2.4.1/decorators.js",
-                "lit/directives/class-map.js": "https://ga.jspm.io/npm:lit@2.4.1/directives/class-map.js"
-              },
-              "scopes": {
-                "https://ga.jspm.io/": {
-                  "@lit/reactive-element": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/reactive-element.js",
-                  "@lit/reactive-element/decorators/": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/decorators/",
-                  "@lrnwebcomponents/code-sample": "https://ga.jspm.io/npm:@lrnwebcomponents/code-sample@4.1.0/code-sample.js",
-                  "@patternfly/pfe-core/": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/",
-                  "@patternfly/pfe-modal": "https://ga.jspm.io/npm:@patternfly/pfe-modal@2.0.0-next.6/pfe-modal.js",
-                  "@patternfly/pfe-spinner": "https://ga.jspm.io/npm:@patternfly/pfe-spinner@2.0.0-next.6/pfe-spinner.js",
-                  "@patternfly/pfe-tooltip/BaseTooltip.js": "https://ga.jspm.io/npm:@patternfly/pfe-tooltip@1.1.0-next.0/BaseTooltip.js",
-                  "@popperjs/core": "https://ga.jspm.io/npm:@popperjs/core@2.11.6/lib/index.js",
-                  "lit": "https://ga.jspm.io/npm:lit@2.3.0/index.js",
-                  "lit-element/lit-element.js": "https://ga.jspm.io/npm:lit-element@3.2.2/development/lit-element.js",
-                  "lit-html": "https://ga.jspm.io/npm:lit-html@2.4.0/node/lit-html.js",
-                  "lit-html/": "https://ga.jspm.io/npm:lit-html@2.4.0/node/",
-                  "lit/": "https://ga.jspm.io/npm:lit@2.3.0/",
-                  "tslib": "https://ga.jspm.io/npm:tslib@2.4.1/tslib.es6.js"
-                },
-                "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/": {
-                  "lit/": "https://ga.jspm.io/npm:lit@2.4.1/"
-                }
-              }
-            }
-            </script>
+    {
+      "imports": {
+        "@patternfly/pfe-accordion": "https://ga.jspm.io/npm:@patternfly/pfe-accordion@2.0.0-next.8/pfe-accordion.js",
+        "@patternfly/pfe-band": "https://ga.jspm.io/npm:@patternfly/pfe-band@2.0.0-next.4/pfe-band.js",
+        "@patternfly/pfe-button": "https://ga.jspm.io/npm:@patternfly/pfe-button@2.0.0-next.7/pfe-button.js",
+        "@patternfly/pfe-card": "https://ga.jspm.io/npm:@patternfly/pfe-card@2.0.0-next.6/pfe-card.js",
+        "@patternfly/pfe-core": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/core.js",
+        "@patternfly/pfe-core/decorators.js": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/decorators.js",
+        "@patternfly/pfe-cta": "https://ga.jspm.io/npm:@patternfly/pfe-cta@2.0.0-next.5/pfe-cta.js",
+        "@patternfly/pfe-icon": "https://ga.jspm.io/npm:@patternfly/pfe-icon@2.0.0-next.5/pfe-icon.js",
+        "@patternfly/pfe-switch": "https://ga.jspm.io/npm:@patternfly/pfe-switch@2.0.0-next.0/pfe-switch.js",
+        "@patternfly/pfe-modal": "https://ga.jspm.io/npm:@patternfly/pfe-modal@2.0.0-next.6/pfe-modal.js",
+        "@rhds/elements": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/rhds.min.js",
+        "@rhds/elements/rh-secondary-nav/rh-secondary-nav.js": "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/elements/rh-secondary-nav/rh-secondary-nav.js",
+        "element-internals-polyfill": "https://ga.jspm.io/npm:element-internals-polyfill@1.1.16/dist/index.js",
+        "lit": "https://ga.jspm.io/npm:lit@2.4.1/index.js",
+        "lit/decorators.js": "https://ga.jspm.io/npm:lit@2.4.1/decorators.js",
+        "lit/directives/class-map.js": "https://ga.jspm.io/npm:lit@2.4.1/directives/class-map.js"
+      },
+      "scopes": {
+        "https://ga.jspm.io/": {
+          "@lit/reactive-element": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/reactive-element.js",
+          "@lit/reactive-element/decorators/": "https://ga.jspm.io/npm:@lit/reactive-element@1.4.2/node/decorators/",
+          "@lrnwebcomponents/code-sample": "https://ga.jspm.io/npm:@lrnwebcomponents/code-sample@4.1.0/code-sample.js",
+          "@patternfly/pfe-core/": "https://ga.jspm.io/npm:@patternfly/pfe-core@2.0.0-next.10/",
+          "@patternfly/pfe-modal": "https://ga.jspm.io/npm:@patternfly/pfe-modal@2.0.0-next.6/pfe-modal.js",
+          "@patternfly/pfe-spinner": "https://ga.jspm.io/npm:@patternfly/pfe-spinner@2.0.0-next.6/pfe-spinner.js",
+          "@patternfly/pfe-tooltip/BaseTooltip.js": "https://ga.jspm.io/npm:@patternfly/pfe-tooltip@1.1.0-next.0/BaseTooltip.js",
+          "@popperjs/core": "https://ga.jspm.io/npm:@popperjs/core@2.11.6/lib/index.js",
+          "lit": "https://ga.jspm.io/npm:lit@2.3.0/index.js",
+          "lit-element/lit-element.js": "https://ga.jspm.io/npm:lit-element@3.2.2/development/lit-element.js",
+          "lit-html": "https://ga.jspm.io/npm:lit-html@2.4.0/node/lit-html.js",
+          "lit-html/": "https://ga.jspm.io/npm:lit-html@2.4.0/node/",
+          "lit/": "https://ga.jspm.io/npm:lit@2.3.0/",
+          "tslib": "https://ga.jspm.io/npm:tslib@2.4.1/tslib.es6.js"
+        },
+        "https://ga.jspm.io/npm:@rhds/elements@1.0.0-beta.26/": {
+          "lit/": "https://ga.jspm.io/npm:lit@2.4.1/"
+        }
+      }
+    }
+</script>
   <script src="demo.js" type="module"></script>
 </head>
 
@@ -59,20 +63,22 @@
     <a href="/" slot="logo">Open Beta</a>
     <ul slot="nav">
       <li><a href="/demo/">Card</a></li>
-      <li><a href="/demo/topbar">Top Bar</a></li>
+      <li><a href="/demo/bar.html">Bar</a></li>
       <li><a href="/demo/inline.html">Inline</a></li>
     </ul>
   </rh-secondary-nav>
 
   <div class="container">
-    <rh-inline-switch key="demo-one" on-message="Showing the new header design" off-message="Showing the old header design">
-    </rh-inline-switch>
+
+    <rh-switcher variant="inline" key="demo-one" on-message="Showing the new header design" off-message="Showing the old header design">
+      <rh-feedback-form slot="form"></rh-feedback-form>
+    </rh-switcher>
     <rh-swap key="demo-one">
       <div slot="a">
-        <h2>Card - Switcher demo </h2>
+        <h2>Inline Variant</h2>
       </div>
       <div slot="b">
-        <h2>Card - Switcher demo 🌶️ Super Spicy 🌶️</h2>
+        <h2>Inline Variant 🌶️ Super Spicy 🌶️</h2>
       </div>
     </rh-swap>
   </div>
@@ -81,8 +87,6 @@
     <h2 slot="header">Some content between that doesn't switch</h2>
     <p>This is some unchanging content</p>
   </pfe-band>
-
-  
 
   <rh-swap key="demo-two">
     <div slot="a">
@@ -102,8 +106,9 @@
   </rh-swap>
 
   <pfe-band color-palette="lightest" style="padding-block: 0;">
-    <rh-inline-switch key="demo-two" on-message="Showing the new pfe-band design" off-message="Showing the old pfe-band design">
-    </rh-inline-switch>
+    <rh-switcher variant="inline" key="demo-two" on-message="Showing the new pfe-band design" off-message="Showing the old pfe-band design">
+      <rh-feedback-form slot="form"></rh-feedback-form>
+    </rh-switcher>
   </pfe-band>
 
   <pfe-button id="local-storage-button">

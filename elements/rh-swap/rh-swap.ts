@@ -3,7 +3,7 @@ import { customElement, property, queryAssignedElements, state, query } from 'li
 
 import { bound } from '@patternfly/pfe-core/decorators.js';
 
-import { SwapChangeEvent } from '../rh-inline-switch/rh-inline-switch.js';
+import { SwapChangeEvent } from '../rh-switcher/rh-switcher.js';
 
 @customElement('rh-swap')
 export class RhSwap extends LitElement {
